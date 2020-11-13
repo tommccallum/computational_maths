@@ -87,6 +87,27 @@
 * Visualising linear equations
 * Scalar product, cross product
 
+# Foundation Optimisation
+
+* Graphs and Trees
+* Traversing graphs and trees
+* Heuristics, Nondeterministic and Deterministic
+* Breadth first and depth first search
+* Dijkstras algorithm
+* A* algorithm
+* Minima and Maxima
+* Convex Hull
+* Differentiability
+* Gradient Descent
+* Stochastic Gradient Descent
+* Simulated Annealing
+* Tabu Search
+* Hill climbing
+* Local search
+* Linear programmming
+* Binary Search
+
+
 ## References
 
 * https://www.mathplanet.com
