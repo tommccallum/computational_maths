@@ -24,6 +24,7 @@ Logic gives us rules (De Morgan's laws and Double Negation) we can follow to con
 
 For example, the following are logically equivalent - which one is easier to understand is debatable!
 
+
 ```
 if ( !(calculation_success AND download_success) ) {
     // do something
@@ -31,11 +32,24 @@ if ( !(calculation_success AND download_success) ) {
 ```
 
 ```
-if ( !calculation_success OR !download_success) ) {
+if ( !calculation_success OR !download_success ) {
     // do something
 }
 ```
 
+```
+if ( !!success ) {
+
+}
+```
+
+same as
+
+```
+if ( success ) {
+    
+}
+```
 
 
 ## References
