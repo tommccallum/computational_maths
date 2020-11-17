@@ -6,6 +6,8 @@ In these examples we are a bunny and we are walking along the number line.  Our 
 
 You can think of our bunny as a point with a direction but no length.  The point has a sense of "positive" relative to itself.  This is equivalent in a 3d game where you have a "world view" transform and a "entity view" transform.
 
+_In a nutshell, multiplying by a negative can be viewed as rotation of 180 degrees._
+
 ----
 Rules of negative numbers:
 

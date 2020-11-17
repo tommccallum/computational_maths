@@ -10,6 +10,8 @@ eqn <- function(x, gradient=1, y_intercept=2) {
 # what is the gradient of the line
 # (0,2) (1,3) 
 find_gradient <- function(x1=0,y1=2,x2=1,y2=3) {
+    # NOTE: as long as you always do the subtractions in the same order
+    # for both x and y, the sign of the gradient will be correct.
     change_in_x <- x2 - x1
     change_in_y <- y2 - y1
     return ( change_in_y / change_in_x)

@@ -24,14 +24,18 @@ NOTE: why is 1/3 3^-1
   * Factors
   * Greatest common factor (common interview question)
   * Least common multiple (common interview question)
-* Circles
-  * Calculating Area and Perimeter
-  * Pi
 * Linear equations 
   * Coordinate systems and ordered pairs
   * visualising in the x-y plane
   * Gradients
   * Visualising solving linear equations
+* Circles
+  * Geometry – fundamental statements
+  * Calculating Area and Perimeter
+  * Pi, degrees and radians
+  * tangent
+  * example of differentiation and integration
+
 
 ## Foundation Algebra
 

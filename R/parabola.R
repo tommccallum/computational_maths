@@ -1,0 +1,37 @@
+# Calculus 1
+
+# an example of differentiation and talk through the reverse (integration)
+par(mfcol=c(2,2))
+x <- seq(-10,10,by=0.01)
+y <- x^3
+plot(x,y, type="l", ylim=c(-40,110), main="y^3", col="orange")
+abline(v=0)
+abline(h=0)
+plot(x,3*x^2, type="l", main="gradient of each point on y=x^3", col="orange")
+abline(v=0)
+abline(h=0)
+plot(x,6*x, type="l", main="gradient of each point on y=3*x^2", col="orange")
+abline(v=0)
+abline(h=0)
+plot(x,rep(6,length(x)), type="l", main="gradient of each point on y=6*x", ylim=c(-1,10), col="orange")
+abline(v=0)
+abline(h=0)
+par(mfcol=c(1,1))
+
+## now rotate by 180 degrees / reflect in y axis / reflect in x axis
+par(mfcol=c(2,2))
+x <- seq(-10,10,by=0.01)
+y <- -x^3
+plot(x,y, type="l", ylim=c(-40,110), main="y^3", col="orange")
+abline(v=0)
+abline(h=0)
+plot(x,3*x^2, type="l", main="gradient of each point on y=x^3", col="orange")
+abline(v=0)
+abline(h=0)
+plot(x,6*x, type="l", main="gradient of each point on y=3*x^2", col="orange")
+abline(v=0)
+abline(h=0)
+plot(x,rep(6,length(x)), type="l", main="gradient of each point on y=6*x", ylim=c(-1,10), col="orange")
+abline(v=0)
+abline(h=0)
+par(mfcol=c(1,1))
