@@ -1,11 +1,7 @@
 # Greatest common devisor
 gcd <- function(x, y) {
     greatest_common_divisor <- NA
-    if(x > y) {
-        smaller_value = y
-    } else {
-        smaller_value = x
-    }
+    smaller_value <- min(x,y)
     for(a_value in 1:smaller_value) {
         # if x is divisible by i
         # OR if y is divisible by i
@@ -35,11 +31,7 @@ euclid_gcd(100,10)
 # Least common multiple
 lcm <- function(x, y) {
     # choose the greater number
-    if(x > y) {
-        greater_value = x
-    } else {
-        greater_value = y
-    }   
+    greater_value <- max(x,y)
     least_common_multiple <- NA
     while(TRUE) {
         # is the larger value divisible by x and y
