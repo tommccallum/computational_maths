@@ -47,6 +47,8 @@ lcm <- function(x, y) {
 
 lcm(2,4)
 
+# makes use of the relationship 
+#  x * y = gcd(x,y) * lcm(x,y)
 faster_lcm <- function(x,y) {
     return ((x * y) / euclid_gcd(x,y))
 }

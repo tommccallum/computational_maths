@@ -19,6 +19,7 @@
   * Multiplying and dividing with negative integers
 * Powers and exponents
   * Monomial, polynomials and terms
+NOTE: why is 1/3 3^-1
   * Base and exponent
   * Factors
   * Greatest common factor (common interview question)
