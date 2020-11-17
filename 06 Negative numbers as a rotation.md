@@ -1,4 +1,4 @@
-# Why subtraction is a rotation
+# Thinking of negative numbers as a rotation
 
 Later on in maths we learn how different operations are in fact rotations in a 2/3-d space.  It is worth revisiting our notion of the number line and negative numbers to see we can play the same trick in 1 dimension.
 
