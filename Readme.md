@@ -38,3 +38,11 @@ Here are some common tools used for various areas of mathmatical computation
 * GNU Plot - http://www.gnuplot.info/ (Open Source)
 * GNU Multiple Precision Arthmetic Library - https://gmplib.org/ (Open Source)
 * SPSS Modeller - Available via academic initiative.
+
+# Recommended Youtube Channels
+
+* [MIT Calculus Revisited: Single Variable Calculus](https://www.youtube.com/playlist?list=PL3B08AE665AB9002A)
+* [3Blue1Brown - fantastic animations and tutorials on individual topics](https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw)
+* [BlackPenRedPen - calculus examples](https://www.youtube.com/user/blackpenredpen)
+* [Numberphile - interesting maths facts](https://www.youtube.com/user/numberphile)
+* [Mathologer](https://www.youtube.com/channel/UC1_uAIS3r8Vu6JjXWvastJg)
