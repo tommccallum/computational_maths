@@ -10,28 +10,37 @@ set.seed(101)
 # generate 200 points with mean 100, std. 2
 sampleData=matrix(rnorm(100*2),100,2)
 # pick 2 of the points to be cluster centers
-whichCluster=sample(1:2,100,replace=TRUE)
+target=sample(1:2,100,replace=TRUE)
 # take mean of each cluster
 clusterMeans=matrix(rnorm(3*2,sd=4),3,2)
-clusterdata=sampleData+clusterMeans[whichCluster,]
-clusterdata[which(whichCluster==1)]=clusterdata[which(whichCluster==1)]+5
-clusterdata[which(whichCluster==1),2]=clusterdata[which(whichCluster==1),2]+5
-plot(clusterdata,col=whichCluster,pch=19, ylim=c(-8,8), xlim=c(-8,8))
-points(clusterdata, col=whichCluster, type="p", pch=19)
+clusterdata=sampleData+clusterMeans[target,]
+clusterdata[which(target==1)]=clusterdata[which(target==1)]+5
+clusterdata[which(target==1),2]=clusterdata[which(target==1),2]+5
+plot(clusterdata,col=target,pch=19, ylim=c(-8,8), xlim=c(-8,8))
+points(clusterdata, col=target, type="p", pch=19)
+
+# example classification line
+# abline(h=0)
+
+# must be in the right directory to run
+source("activation_functions.R")
+
+activation_function <- function(x) {
+    # swap between the default and the logistic and the tanh
+    return ( default_function(x) )
+}
+
+
 
 # Function that does our prediction for us based 
 # on our linear expression
 predict_cluster <- function(row, weights, bias=0) {
     # this is where we calculate the linear combination
-    activation <- sum(weights * row) + bias
+    excitement <- sum(weights * row) + bias
     # this is our decision making mechanism
     # we can transform this activation with a sigmoid or a threshold
     # function or anything else...
-    if ( activation >= 0 ) {
-        return (1.0)
-    } else {
-        return (0.0)
-    }
+    return ( activation_function(excitement) )
 }
 
 # train our perceptron
@@ -56,8 +65,9 @@ train_weights_on_perceptron <- function(training_data, true_output, learning_rat
 
             # plot intermediate line
             x <- seq(-8,8,by=0.1)
-            y <- current_weights[1] * x + current_weights[2]
-            lines(x,y,col="orange", lwd=3, lty=2)
+            y <- seq(-8,8,by=0.1)
+            z <- current_weights[1] * x + current_weights[2] * y
+            lines(x,z,col="orange", lwd=3, lty=2)
 
             # we want to keep a tally of our error across all inputs
             # we take the absolute or square the error
@@ -73,19 +83,28 @@ train_weights_on_perceptron <- function(training_data, true_output, learning_rat
 }
 
 # train on a portion of our data
-weights <- train_weights_on_perceptron(clusterdata[1:25,], whichCluster[1:25], 0.001, 50)
+weights <- train_weights_on_perceptron(clusterdata[1:25,], target[1:25], 0.001, 50)
 for( ii in 1:nrow(clusterdata) ) {
     prediction <- predict_cluster(clusterdata[ii,], weights)
-    print(paste("Expected", whichCluster[ii], "Predicted",prediction + 1))
+    print(paste("Expected", target[ii], "Predicted",prediction + 1))
 }
 
 x <- seq(-8,8,by=0.1)
-y <- weights[1] * x + weights[2]
-lines(x,y,col="blue", lwd=3)
+y <- seq(-8,8,by=0.1)
+z <- weights[1] * x + weights[2] * y 
+lines(x,z,col="blue", lwd=3)
+
+# Here we have effectively compressed our
+# 100 points of data to 2 values. Pretty cool!
 
 
-# if a point is on the x axis at y=0
-# then the linear combination will be a * x_1 + b * x_2 = output
-# if a point is on the y axis at x=0
+# If Alice is teaching Bob what is a cat and what is a dog.
+# Alice tells Bob every instance of cat and dog she has seen in her life.
+# Bob goes to the park and sees an animal. He checks on his list from Alice.
+# This animal is not on Alice's list.  Bob does not know if the animal is a dog or cat.
+# A better way is if Alice told Bob that a cat says "meow" and a dog says "woof".
+# Now Bob can classify any NEW animal, not just the ones Alice has seen before.
+# This is equivalent to Alice giving Bob the weights of her model rather than 
+# the original input and output data.
 
 

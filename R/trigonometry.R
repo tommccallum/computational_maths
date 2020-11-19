@@ -65,3 +65,30 @@ text(point_on_circle_perimeter_x-0.1,point_on_circle_perimeter_y+0.5, "tangent")
 
 # inverse cos, sin, tan are called arccos, arcsin, arctan or acos,asin,atan
 # these tranform a ratio to an angle
+
+
+# NOTE: that a point on the perimeter of the circle can be represented
+# in 2 ways.
+# CARTESIAN COORDINATES:    (x,y)
+# POLAR COORDINATES:        (theta, radius)
+
+polar_coordinates <- function( cartesian_x, cartesian_y ) {
+    # using pythagoras' rule
+    radius <- sqrt( cartesian_x ^ 2 + cartesian_y ^ 2)
+    # using TOA from SOHCAHTOA
+    # atan is the inverse of tan
+    angle <- atan(cartesian_y/cartesian_x)
+    polar_coords <- c(radius, angle)
+    return (polar_coords)
+}
+
+catesian_coordinates <- function( polar_radius, polar_theta ) {
+    # to get our (x,y) coordinates we can use SOH and CAH
+    # from SOHCAHTOA, remember the radius is the H in SOHCAHTOA
+    x <- polar_radius * cos(polar_theta)
+    y <- polar_radius * sin(polar_theta)
+    cartesian_coords <- c(x,y)
+    return (cartesian_coords)
+}
+
+# Try and see with some points and see what you get!
