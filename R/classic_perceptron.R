@@ -97,7 +97,7 @@ lines(x,z,col="blue", lwd=3)
 # Here we have effectively compressed our
 # 100 points of data to 2 values. Pretty cool!
 
-
+# Q: Why is a function better than giving the raw data?
 # If Alice is teaching Bob what is a cat and what is a dog.
 # Alice tells Bob every instance of cat and dog she has seen in her life.
 # Bob goes to the park and sees an animal. He checks on his list from Alice.
