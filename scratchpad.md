@@ -77,19 +77,19 @@ for( i=0 to N) {
 }
 ```
 
-we can pull out a vector $\hat{a} = {a_1,a_2,a_3,...}$
+we can pull out a vector $\bar{a} = \{ a_1,a_2,a_3,... \}$
 
-we can pull out a vector $\hat{x} = {x_1,x_2,x_3,...}$
+we can pull out a vector $\bar{x} = \{ x_1,x_2,x_3,... \}$
 
-$\hat{a} \cdot \hat{x} = c$
+$\bar{a} \cdot \bar{x} = c$
 
 note that $\cdot$ is called matrix multiplication, but this does not mean it obeys the same rules as normal multiplication.  It is a different operator.
 
 In the 2d case, we can then rewrite out $y=mx+c$ as:
 
-$\hat{a} = (m,1)$
+$\bar{a} = (m,1)$
 
-$\hat{x} = (x,y)$
+$\bar{x} = (x,y)$
 
 $c$ is just the same
 
