@@ -41,6 +41,7 @@ This is the identity matrix in 3 dimensions:
 We can only multiply two matrices together if the COLUMNS of the LEFT one is the same as the ROWS of the RIGHT one.  For example: 
 
 ```
+RxC   RxC = RxC
 2x2   2x1 = 2x1
 [a b] [x] = [ax+by]
 [c d] [y] = [cx+dy]
@@ -49,9 +50,10 @@ We can only multiply two matrices together if the COLUMNS of the LEFT one is the
 This is not correct as we would end up with a 2x2 matrix which we do not have enough elements to fill:
 
 ```
-2x1 2x2
-[x] [a b] = NA
-[y] [c d] = NA
+RxC RxC   = RxC
+2x1 2x2   = 2x2
+[x] [a b] = ??
+[y] [c d] = ??
 ```
 
 Note the outer values give the resultant matrix size.  i.e. The ROWS of the left matrix and the COLUMNS of the right matrix, give the size RxC of the resultant matrix.
