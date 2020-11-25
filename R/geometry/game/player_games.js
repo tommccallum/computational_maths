@@ -73,13 +73,10 @@ class Entity {
     }
 
     cast_ray(other) {
-        // if ( this.collided(other) ) {
-        //     return;
-        // }
-        
         const change_in_x = other.x - this.x
         const change_in_y = other.y - this.y
         let direction = 0;
+        // handle cases where atan breaks down - think about the graph of tan(\theta)
         if ( change_in_y == 0 ) {
             if ( change_in_x < 0 ) {
                 direction = Math.PI;
