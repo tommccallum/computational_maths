@@ -69,3 +69,59 @@ points(isHitResults[which(isHitResults[,4]==0),1], isHitResults[which(isHitResul
 points(isHitResults[which(isHitResults[,4]==1),1], isHitResults[which(isHitResults[,4]==1),2], col=cols[2], pch=19, lwd=10)
 
 
+# lets quickly remember what tan looks like:
+plot_tan <- function() {
+    y <- NULL
+    x <- seq(-pi,pi,by=0.01)
+    for ( t in x ) {
+        okA <- as.logical(all.equal(t, -pi/2, tolerance=0.01 ))
+        okB <- as.logical(all.equal(t, pi/2, tolerance=0.01))
+        if ( !is.na(okA) || !is.na(okB) ) {
+            y <- c(y, NA)
+        } else {
+            y = c( y, tan(t) )
+        }
+    }
+    plot(x, y, type="l", main="tan(theta)", ylim=c(-8,8))
+    abline(v=0)
+    abline(h=0)
+}
+
+# where is the enemy?
+# assumes player is looking down the positive x axis
+get_enemy_direction <- function( player_position, enemy_position ) {
+    if ( all(player_position == enemy_position)) {
+        return (0)
+    }
+    change_in_x = enemy_position[1] - player_position[1]
+    change_in_y = enemy_position[2] - player_position[2]
+    # are we in the right quadrants?
+    if ( enemy_position[1] < player_position[1] ) {
+        # we would need another test to know if we are in the top or bottom
+        # quadrant.
+        print("left quadrants")
+        return (pi + atan( change_in_y / change_in_x) )
+    }
+    # are we in the bottom quadrants?
+    if ( enemy_position[2] < player_position[2] ) {
+        # here atan is negative
+        print("bottom quadrant")
+        return (2*pi + atan( change_in_y / change_in_x) )
+    }
+    return (atan( change_in_y / change_in_x) )
+}
+
+get_enemy_direction(c(0,0),c(1,0)) # should be zero
+get_enemy_direction(c(0,0),c(0,1)) # should be pi/2
+get_enemy_direction(c(0,0),c(-1,0)) # should be pi
+get_enemy_direction(c(0,0),c(0,-1)) # should be 1.5pi
+
+get_enemy_direction(c(0,0),c(2,2)) 
+get_enemy_direction(c(0,0),c(-2,2)) 
+get_enemy_direction(c(0,0),c(-2,-2)) 
+get_enemy_direction(c(0,0),c(2,-2)) 
+
+get_enemy_direction(c(0,0)+c(2,2),c(2,2)) 
+get_enemy_direction(c(0,0)+c(2,2),c(-2,2)) 
+get_enemy_direction(c(0,0)+c(2,2),c(-2,-2)) 
+get_enemy_direction(c(0,0)+c(2,2),c(2,-2)) 
