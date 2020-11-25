@@ -20,6 +20,7 @@ class Entity {
         this.speed_x = random(3,7)
         this.speed_y = random(3,7)
         this.flashing = false;
+        this.current_color = this.color
         Entity.entity_count++;
     }
 
@@ -46,16 +47,8 @@ class Entity {
     }
 
     draw() {
-        if ( !this.flashing || ( this.flashing && this.flash_counter % 2 == 0) ) {
-            stroke(this.color);
-            fill(this.color);
-        } else {
-            stroke(this.flashing_color);
-            fill(this.flashing_color);
-        }
-        if ( this.flashing ) {
-            this.flash_counter++;
-        }
+        stroke(this.current_color);
+        fill(this.current_color);
         // circle (x,y,d)
         circle( this.x, this.y, this.radius*2 );
         noFill()
@@ -66,9 +59,28 @@ class Entity {
         const distance_away = sqrt( Math.pow(other.x - this.x,2) + Math.pow(other.y - this.y,2) )
         //console.log(distance_away)
         if ( distance_away <= this.outer_radius + other.outer_radius ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    on_collision(other) {
+        if ( this.collided(other) ) {
             this.flashing = true;
+            if ( this.flash_counter % 7 == 0 ) {
+                if ( this.current_color == this.color) {
+                    this.current_color = this.flashing_color
+                } else {
+                    this.current_color = this.color
+                }
+            }
+            if ( this.flashing ) {
+                this.flash_counter++;
+            }    
         } else {
             this.flashing = false;
+            this.current_color = this.color
         }
     }
 
@@ -102,8 +114,8 @@ class Entity {
         const direction_bottom = direction - Math.PI/6
 
         // arc(x,y,w,h,start,stop,mode,detail)
-        fill(this.color)
-        stroke(this.color)
+        stroke(this.current_color);
+        fill(this.current_color);
         arc(this.x, this.y, this.outer_radius*2, this.outer_radius*2, direction_bottom, direction_top, PIE);
     }
 }
@@ -127,10 +139,10 @@ function setup() {
   frameRate(30);
   player = new Entity();
   enemy = new Entity();
-  player.x = constrain(random(canvas_width), player.radius, canvas_width - player.radius);
-  player.y = constrain(random(canvas_height), player.radius, canvas_height - player.radius);
-  enemy.x = constrain(random(canvas_width), enemy.radius, canvas_width - enemy.radius);
-  enemy.y = constrain(random(canvas_height), enemy.radius, canvas_height - enemy.radius);
+  player.x = constrain(random(canvas_width), player.radius*2, canvas_width - player.radius*2);
+  player.y = constrain(random(canvas_height), player.radius*2, canvas_height - player.radius*2);
+  enemy.x = constrain(random(canvas_width), enemy.radius*2, canvas_width - enemy.radius*2);
+  enemy.y = constrain(random(canvas_height), enemy.radius*2, canvas_height - enemy.radius*2);
     // player.x = 100
     // player.y = 100
     // enemy.x = 100
@@ -144,8 +156,8 @@ function draw() {
   background(0); // Set the background to black
    player.move()
    enemy.move()
-  player.collided(enemy)
-  enemy.collided(player)
+  player.on_collision(enemy)
+  enemy.on_collision(player)
 
   player.draw();
   enemy.draw();
