@@ -41,7 +41,7 @@ isHit_byCicle <- function(player_location, player_radius, enemy_location) {
 
 # plot areas where we are hit
 isHitResults <- data.frame()
-player_location <- c(0,0)
+player_location <- c(3,-2)
 player_radius <- 5
 enemy_radius <- 3
 for( x in -10:10 ) {
@@ -58,13 +58,13 @@ par(mfcol=c(1,2))
 plot(-10:10, -10:10, col="white", main="Impact Ranges (Rectangle)")
 abline(v=0)
 abline(h=0)
-points(0,0,pch=19, col="green", lwd=15)
+points(player_location[1],player_location[2],pch=19, col="green", lwd=15)
 points(isHitResults[which(isHitResults[,3]==0),1], isHitResults[which(isHitResults[,3]==0),2], col=cols[1], pch=19)
 points(isHitResults[which(isHitResults[,3]==1),1], isHitResults[which(isHitResults[,3]==1),2], col=cols[2], pch=19, lwd=10)
 plot(-10:10, -10:10, col="white", main="Impact Ranges (Circle)")
 abline(v=0)
 abline(h=0)
-points(0,0,pch=19, col="green", lwd=15)
+points(player_location[1],player_location[2],pch=19, col="green", lwd=15)
 points(isHitResults[which(isHitResults[,4]==0),1], isHitResults[which(isHitResults[,4]==0),2], col=cols[1], pch=19)
 points(isHitResults[which(isHitResults[,4]==1),1], isHitResults[which(isHitResults[,4]==1),2], col=cols[2], pch=19, lwd=10)
 
