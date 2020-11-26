@@ -89,6 +89,11 @@ plot_tan <- function() {
 
 # where is the enemy?
 # assumes player is looking down the positive x axis
+# asymptotic - means that the function goes infinitely to a point, and 
+# will blow up our calculations if we try to use that x coordinate.
+# cos,sin,tan and there opposite arccos, arcsin, arctan 
+# which have the shortened names in most languages of acos, asin, atan.
+# acos, asin, atan take a ratio and give us an angle.
 get_enemy_direction <- function( player_position, enemy_position ) {
     if ( all(player_position == enemy_position)) {
         return (0)
