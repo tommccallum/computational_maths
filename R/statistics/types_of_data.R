@@ -54,7 +54,7 @@ barplot(frequencies)
 selections_as_factor <- factor(selections, levels=c("Very Unhappy", "Unhappy", "Neutral", "Happy", "Very Happy"), ordered=TRUE)
 median(as.numeric(selections_as_factor))        ## method one, a bit of hack but good to know
 library(missMethods)
-median(selections)                              ## replaces missing ordered factor median function, so more natural
+median(selections_as_factor)                              ## replaces missing ordered factor median function, so more natural
 quantile(selections_as_factor, probs=c(0,1,0.25), type=1)        ## inter-quartile ranges, aka quantiles
 # note that R does not have  mode function but that is easily fixed
 # but it does have a mode function so we cannot use that as our function name
@@ -97,7 +97,7 @@ barplot(table(heads))
 
 # Numerical - Continuous - Ratio
 # ordered units with the same difference but do have a true zero
-# e.g. height, weight, length
+# e.g. weight, length
 # most physical phenomena can be approximated with a normal distribution
 # can add, subtract, multiply, divide, calculate ratios
 

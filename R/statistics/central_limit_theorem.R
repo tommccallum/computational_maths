@@ -29,7 +29,7 @@ par(mfcol=c(1,1))
 
 #
 # Law of large numbers tells us 2 useful things:
-#   1. the mean of the independent samples is with probability close to 1 (high) close to the mean of the underlying distribution
+#   1. the mean of the _independent_ samples is with probability close to 1 (high) close to the mean of the underlying distribution
 #   2. the density histogram of many independent samples is, with probability close to 1, close to the density histogram of the underlying distribution
 #
 
@@ -50,15 +50,16 @@ num_flips <- 10
 lowerbound <- (0.4 * num_flips) - 1             # the -1 is because its <= instead of <
 upperbound <- 0.6 * num_flips
 prob_of_head <- 0.5
-print(paste("n =",num_flips,": proportion of heads in n flips: ", pbinom(upperbound, num_flips, prob_of_head) - pbinom(lowerbound, num_flips, prob_of_head)))
+print(paste("n =",num_flips,": the likelihood that given 10 flips, that the probability of a head is 0.5: ", pbinom(upperbound, num_flips, prob_of_head) - pbinom(lowerbound, num_flips, prob_of_head)))
 
 num_flips <- 1000
 lowerbound <- (0.4 * num_flips) - 1             # the -1 is because its <= instead of <
 upperbound <- 0.6 * num_flips
 prob_of_head <- 0.5
-print(paste("n =",num_flips,": proportion of heads in n flips: ", pbinom(upperbound, num_flips, prob_of_head) - pbinom(lowerbound, num_flips, prob_of_head)))
+print(paste("n =",num_flips,": the likelihood that given 1000 flips, that the probability of a head is 0.5: ", pbinom(upperbound, num_flips, prob_of_head) - pbinom(lowerbound, num_flips, prob_of_head)))
 
 # This demonstrates that by the law of large numbers the probability goes to 1 as n (num_flips) grows.
+# This shows that as the the number of samples INCREASES the probability that the sample probability matches the population probability TENDS TO 1.
 
 
 #
@@ -67,17 +68,36 @@ print(paste("n =",num_flips,": proportion of heads in n flips: ", pbinom(upperbo
 # the CLT gives precise values for the mean and standard deviation of the random variable.
 #
 # A random variable is some process that we are measuring, e.g. height or weight
-# Does not apply to a coin flip as this has only 2 values and is not a "continuous" measurement.
+#
+# This does not apply to a coin flip as this has only 2 values and is not a "continuous" measurement, hence a BINOMIAL distribution
+# HOWEVER
+# if the random variable is the number of heads per trial, where a trial is a set of coin flips, then this IS a NORMAL distribution.
+# Here some sample code:
+num_trials <- 1000
+num_coin_tosses <- 1000
+freq <- NULL
+for( t in seq(1,num_trials) ) {
+    flips <- round(runif(num_coin_tosses,0,1),0)
+    freq <- c( freq, length(which(flips == 0)) ) ## how many heads?
+}
+par(mfcol=c(1,2))
+hist(freq, main="Sample from our population coin flipping trials") ## this is NORMAL DISTRIBUTION
+mean_heads <- mean(freq)
+sd_heads <- sd(freq)
+modelled_flips <- rnorm(1000,mean=mean_heads, sd=sd_heads)
+plot(density(modelled_flips), main="Sample from our modelled population")
+par(mfcol=c(1,1))
+
 #
 # We need a minimum of 30 samples for the CLT to apply.
 
 library(datasets)
 data(iris)
-iris_data <- iris[["Sepal_Length"]]          # generating independent samples from a normal random variable
+iris_data <- iris[["Sepal.Length"]]          # generating independent samples from a normal random variable
 mean(iris_data)     # ~ 6
 sd(iris_data)       # ~ 1
 
-synthetic <- rnorm(10000, mean=5.8, sd=0.82)
+synthetic <- rnorm(150, mean=5.8, sd=0.82)
 mean(synthetic)
 sd(synthetic)
 
@@ -86,7 +106,7 @@ plot(density(iris_data), main="Sepal length (random variable)")
 plot(density(synthetic), main="Synthetic Sepal length (random variable)")
 
 # we can test the "normality" of our data by using a Goodness-of-fit test
-shapiro_test(iris_data)
+shapiro.test(iris_data)
 # we look at the p-value and this gives us our confidence (p-value = 0.01, means a 1 in a 100 chance of being a false positive)
 # given an alpha level of 0.05, if the p-value < alpha, then we can reject the null hypothesis (that the data is normally distributed) and 
 # there is evidence that the data IS NOT normally distributed.
@@ -102,4 +122,4 @@ shapiro_test(iris_data)
 # Why do we need to know this? Many cases in data science comes down to using the normal distribution because we ASSUME that the 
 # data is independent.
 # Q: Can we test data to see if its independent or not?
-# Answer: Yes we can.  We can use tets such as chi-square
+# Answer: Yes we can.  We can use tests such as chi-square
