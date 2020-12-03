@@ -1,6 +1,6 @@
 # Probability
 
-Given an event such as a coin flip, what is the probility of a head?
+Given an event such as a coin flip, what is the probability of a head?
 
 $Pr(head) = 0.5$
 
@@ -48,15 +48,15 @@ For a random variable, all the possible outcomes **must** sum up to 1.
 
 The event A cannot occur AND not occur at the same time.  Hence the complement:
 
-$Pr(A) = 1 - P(\sim A)$
+$Pr(A) = 1 - Pr(\sim A)$
 
 ## Multiplication
 
 Assuming events A and B are not mutually exclusive and therefore can occur at the same time.
 
-$P(A \cap B) = P(A) * P(B|A)$
+$Pr(A \cap B) = Pr(A) * Pr(B|A)$
 
-We read this as:  The probability of A and B both occurring is, the probabilty of A multiplied by the probability of B given A.  Here A is the **independent variable** and B is the **dependent variable**.
+We read this as:  The probability of A and B both occurring is, the probability of A multiplied by the probability of B given A.  Here A is the **independent variable** and B is the **dependent variable**.
 
 Example:
 
@@ -88,7 +88,7 @@ $Pr(\sim(A \cap B)) = 1 - Pr(A \cap B)$
 
 $Pr(\sim(A \cap B)) = 1 - 0.3$
 
-$Pr(\sim(A \cap B)) = 1 - 0.7$
+$Pr(\sim(A \cap B)) = 0.7$
 
 What are the alternatives?
 
@@ -115,7 +115,7 @@ $Pr(A \cup B) = Pr(A) + Pr(B) - Pr(A) * Pr(B|A)$
 
 Example:
 
-A student goes to the library. The probability that she checks out (a) a work of fiction is $0.40$, (b) a work of non-fiction is $0.30$, and (c) both fiction and non-fiction is $0.20$. What is the probability that the student checks out a work of fiction, non-fiction, or both?
+A student goes to the library. The probability that she checks out (a) a work of fiction is $0.40$, (b) a work of non-fiction is $0.30$, and (c) both fiction and non-fiction is $0.20$. Note that (a)+(b)+(c) does not add up to 1, so there is another event that must account for the missing 0.1, perhaps she does not take out a book at all. What is the probability that the student checks out a work of fiction, non-fiction, or both?
 
 Let $F$ = the event that the student checks out fiction
 
@@ -149,9 +149,9 @@ How did we get here?
 
 $Pr(A \cap B) = Pr(A) * Pr(B|A) = Pr(B) * Pr(A|B)$ (1)
 
-$Pr(A|B) = \frac{Pr(A \cap B)}{Pr(B)}$ if P(B) != 0 (2)
+$Pr(B|A) = \frac{Pr(A \cap B)}{Pr(A)}$ if P(A) != 0 (2)
 
-$Pr(B|A) = \frac{Pr(A \cap B)}{Pr(A)}$ if P(A) != 0 (3)
+$Pr(A|B) = \frac{Pr(A \cap B)}{Pr(B)}$ if P(B) != 0 (3)
 
 Substitute for $Pr(A \cap B)$ in (2) and (3) by (1):
 
@@ -177,7 +177,7 @@ in other words:
 
 $Pr(H|E) = \frac{Pr(E|H)}{Pr(E)}* Pr(H)$ if P(E) != 0
 
-$Pr(H)$ is the **prior probability**, which represents the probability that the hypothesis is true.
+$Pr(H)$ is the **prior probability**, which represents the probability that I have the belief that the hypothesis is true.
 
 $Pr(H|E)$ is called the **posterior probability**, which represents the probability that the hypothesis is true GIVEN the evidence we now have.
 

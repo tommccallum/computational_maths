@@ -21,7 +21,7 @@ my_median <- function(x) {
 
 # our data
 rn <- runif(100,100,200)
-data <- c(1,rn,100000)
+data <- c(1,rn,300)
 m1 <- my_mean(data)
 med1 <- my_median(data)
 m2 <- my_mean(rn)

@@ -31,9 +31,10 @@ ccf(x,y, lag.max=300)
 #   (Common cause) A and B are correlated because they are both caused by event C.
 #   (Additional variable) A does cause B, as long as D happens.
 #   (Chain reaction) A causes E which causes B, but you only observed A and B.
+#
+# Hint: Hidden Markov Models
 
-
-# if you find CORRELATION
+# if you find CORRELATION, you CANNOT assume causation
 # then you can TEST for CAUSATION
 #
 # You do this by doing your hypothesis testing
